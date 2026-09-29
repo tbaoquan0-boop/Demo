@@ -1,0 +1,73 @@
+{
+  "code": "BKA",
+  "source": "mau-phat-trien",
+  "updatedAt": "2026-09-29",
+  "majors": [
+    {
+      "majorCode": "IT1",
+      "name": "Khoa học máy tính",
+      "group": "CNTT",
+      "scale": 30,
+      "method": "thpt",
+      "note": "",
+      "tuition": null,
+      "tuitionYear": null,
+      "combos": [
+        { "combo": "A00", "scores": { "2025": 27.5, "2024": 27.0 } },
+        { "combo": "A01", "scores": { "2025": 27.25, "2024": 26.75 } }
+      ]
+    },
+    {
+      "majorCode": "IT2",
+      "name": "Kỹ thuật phần mềm",
+      "group": "CNTT",
+      "scale": 30,
+      "method": "thpt",
+      "note": "",
+      "tuition": null,
+      "tuitionYear": null,
+      "combos": [
+        { "combo": "A00", "scores": { "2025": 26.5 } }
+      ]
+    },
+    {
+      "majorCode": "EE1",
+      "name": "Kỹ thuật điện",
+      "group": "Kỹ thuật",
+      "scale": 30,
+      "method": "thpt",
+      "note": "",
+      "tuition": null,
+      "tuitionYear": null,
+      "combos": [
+        { "combo": "A00", "scores": { "2025": 26.0, "2024": 24.5 } }
+      ]
+    },
+    {
+      "majorCode": "ME1",
+      "name": "Kỹ thuật cơ khí",
+      "group": "Kỹ thuật",
+      "scale": 30,
+      "method": "thpt",
+      "note": "",
+      "tuition": null,
+      "tuitionYear": null,
+      "combos": [
+        { "combo": "A00", "scores": { "2025": 25.0, "2024": 24.8 } }
+      ]
+    },
+    {
+      "majorCode": "FL1",
+      "name": "Ngôn ngữ Anh",
+      "group": "Ngoại ngữ",
+      "scale": 40,
+      "method": "thpt",
+      "note": "nhân đôi ngoại ngữ",
+      "tuition": null,
+      "tuitionYear": null,
+      "combos": [
+        { "combo": "D01", "scores": { "2025": 36.5, "2024": 35.0 } }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "source": "mau-phat-trien",
+  "updatedAt": "2026-09-29",
+  "universities": [
+    {
+      "code": "BKA",
+      "name": "Đại học Bách khoa Hà Nội",
+      "aliases": ["BKHN", "Bach Khoa Ha Noi", "ĐHBK HN"],
+      "city": "HN",
+      "type": "public",
+      "website": "",
+      "address": "",
+      "founded": "",
+      "cover": "assets/default-campus.svg",
+      "hasMajorData": true,
+      "minScore": 25,
+      "maxScore": 27.5,
+      "majorGroups": ["CNTT", "Kỹ thuật"]
+    },
+    {
+      "code": "QSB",
+      "name": "Trường Đại học Bách khoa - ĐHQG TP.HCM",
+      "aliases": ["BKHCM", "HCMUT", "Bach Khoa TP HCM"],
+      "city": "HCM",
+      "type": "public",
+      "website": "",
+      "address": "",
+      "founded": "",
+      "cover": "assets/default-campus.svg",
+      "hasMajorData": true,
+      "minScore": 24.5,
+      "maxScore": 26.75,
+      "majorGroups": ["CNTT", "Kỹ thuật"]
+    },
+    {
+      "code": "FPT",
+      "name": "Đại học FPT",
+      "aliases": ["FPT University", "ĐH FPT"],
+      "city": "HCM",
+      "type": "private",
+      "website": "",
+      "address": "",
+      "founded": "",
+      "cover": "assets/default-campus.svg",
+      "hasMajorData": true,
+      "minScore": 21,
+      "maxScore": 23.5,
+      "majorGroups": ["CNTT", "Kinh tế"]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+---
+description: Bối cảnh, phạm vi, quyết định thiết kế và quy tắc làm việc của dự án UniReview VN. Đọc đầu tiên mỗi khi làm bất cứ việc gì trong project này.
+alwaysApply: true
+---
+
+# UniReview VN: Tổng quan
+
+## Dự án là gì
+Web tra cứu thông tin tuyển sinh và điểm chuẩn các trường đại học tại **Hà Nội và TP.HCM**. Đây là **bài môn học** của Quan (sinh viên năm 3), sẽ bảo vệ trước thầy cô. Vì vậy code phải **đơn giản, dễ đọc, dễ giải thích**.
+
+## Kiến trúc
+- **Frontend thuần**, không backend, không database.
+- HTML + TailwindCSS (bản CDN) + vanilla JavaScript. Không framework, không Node, không build.
+- Dữ liệu là file JSON tĩnh, nhưng phải lấy qua **Mock API** (Promise + setTimeout ~500ms, có cache, có xử lý lỗi).
+- Deploy web tĩnh: GitHub Pages hoặc Netlify.
+
+## 3 trang
+1. **Trang chủ:** live search (bỏ dấu, viết tắt, phím ↑ ↓ Enter), bộ lọc (thành phố, loại hình, nhóm ngành), danh sách trường dạng card.
+2. **Matcher:** gợi ý nguyện vọng dựa trên điểm chuẩn 2 năm gần nhất (xem `03-matcher.md`).
+3. **Chi tiết trường:** ảnh bìa, thông tin chung, bảng điểm chuẩn có lọc và sắp xếp.
+
+Ngoài ra: Light/Dark mode, skeleton loading, responsive ưu tiên mobile.
+
+## Các quyết định đã chốt (không tự ý đổi)
+- Chỉ trường ở Hà Nội và TP.HCM.
+- **Đã bỏ hoàn toàn phần đánh giá/nhận xét.** Không thêm lại, không để sót code liên quan.
+- Matcher **không dùng ngưỡng tự đặt**, dùng điểm chuẩn 2 năm gần nhất.
+- Mỗi trường **1 ảnh cổng trường**, lưu trong `assets/campus/`, không hotlink ảnh ngoài.
+- Không cần database để lưu ảnh (web tĩnh, ảnh đi cùng repo).
+- Chỉ đưa vào Matcher các ngành xét **điểm thi THPT, thang 30**.
+
+## Quy tắc làm việc cho Claude
+1. **Không bao giờ tự sinh số liệu** (điểm chuẩn, học phí, website, năm thành lập). Chỉ định dạng lại dữ liệu Quan gửi (PDF, bảng, link). Chỗ nào không chắc thì hỏi hoặc đánh dấu, không đoán.
+2. Khi trích dữ liệu từ PDF/bảng, **liệt kê rõ chỗ mờ hoặc nghi ngờ** để Quan đối chiếu lại với nguồn gốc.
+3. Mỗi lần đưa code, **giải thích ngắn từng phần** để Quan trả lời được thầy cô.
+4. Trả lời tiếng Việt, ngắn gọn, thẳng, không khen suông. Thấy chỗ sai hoặc rủi ro thì nói ngay.
+5. Không thêm tính năng ngoài phạm vi. Nếu thấy nên thêm thì đề xuất trước, chờ Quan chốt.
+6. Khi sửa file, chỉ đụng phần cần sửa, không viết lại cả file nếu không cần.
+
+## Phân công
+- **Claude:** viết code, sửa lỗi, giải thích, viết script gộp dữ liệu, viết README.
+- **Quan:** thu thập dữ liệu thật và đối chiếu nguồn, tải và nén ảnh (dưới ~200KB), test trên máy, deploy, đọc hiểu code.
+
+## Thứ tự làm
+1. Dựng khung 3 trang + Mock API, chạy với 3 trường mẫu.
+2. Live search và bộ lọc.
+3. Trang chi tiết.
+4. Matcher.
+5. Nhập dữ liệu thật dần (mốc đầu 20–30 trường lớn).
+6. Deploy + README (ghi nguồn dữ liệu và nguồn ảnh).
+
+## Hạn chế cần nói thẳng khi báo cáo
+- Chỉ gợi ý trong các trường đã nhập dữ liệu.
+- Chỉ xét điểm thi THPT thang 30.
+- Độ trễ API là mô phỏng.
+- Không có backend, hướng phát triển là thêm backend + database.

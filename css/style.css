@@ -1,0 +1,28 @@
+@keyframes pulse-skel {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+.skel {
+  background: linear-gradient(90deg, rgba(148,163,184,0.18) 0%, rgba(148,163,184,0.32) 50%, rgba(148,163,184,0.18) 100%);
+  background-size: 200% 100%;
+  animation: pulse-skel 1.2s ease-in-out infinite;
+  border-radius: 0.75rem;
+}
+
+.fade-in {
+  animation: fade-in 0.35s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.hero-overlay {
+  background: linear-gradient(180deg, rgba(8,18,36,0.72) 0%, rgba(8,18,36,0.86) 100%);
+}
+
+.dark .hero-overlay {
+  background: linear-gradient(180deg, rgba(8,18,36,0.55) 0%, rgba(8,18,36,0.88) 100%);
+}

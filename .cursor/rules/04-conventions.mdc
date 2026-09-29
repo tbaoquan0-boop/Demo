@@ -1,0 +1,55 @@
+---
+description: Quy ước viết code, giao diện và xử lý lỗi cho UniReview VN (vanilla JS + Tailwind). Đọc mỗi khi viết hoặc sửa HTML, CSS, JS trong project.
+globs: "**/*.{html,js,css}"
+alwaysApply: false
+---
+
+# Quy ước code
+
+## Chung
+- Vanilla JavaScript hiện đại (ES6+): `const`/`let`, arrow function, template string, `async/await`. Không framework, không thư viện ngoài ngoài Tailwind CDN.
+- Mỗi file JS lo **một việc** đúng như `01-structure.md`.
+- Tên biến, hàm bằng **tiếng Anh**, viết camelCase. 
+- không ghi chú thích
+- Hàm ngắn, làm một việc. Không lặp code, hàm dùng chung đưa vào `utils.js`.
+- Không để `console.log` debug trong bản cuối.
+- Không dùng `localStorage` cho việc khác ngoài lưu lựa chọn Light/Dark. Không lưu dữ liệu người dùng nhập.
+
+## Tách giao diện và logic
+- Hàm **lấy và xử lý dữ liệu** để trong file logic của trang.
+- Hàm **vẽ giao diện** để trong `components.js`: nhận dữ liệu, trả về HTML, không lọc, không gọi API.
+- Muốn sửa giao diện thì chỉ đụng `components.js`, muốn sửa logic thì chỉ đụng file logic.
+
+## Mock API (`api.js`)
+- Mọi lần lấy dữ liệu đều đi qua hàm trong `api.js`, trả về Promise, có độ trễ 500ms.
+- Có 3 loại gọi: danh sách trường, điểm chuẩn một trường, dữ liệu Matcher.
+- Có cache trong biến: gọi lần hai không chờ lại.
+- Lỗi mạng hoặc file không tồn tại thì **reject**, giao diện hiện thông báo lỗi kèm nút "Thử lại".
+- Trường chưa có file điểm chuẩn thì trả về trạng thái "chưa có dữ liệu", không coi là lỗi.
+
+## Tiếng Việt và tìm kiếm
+- Hàm bỏ dấu dùng chuẩn hóa NFD, xóa dấu kết hợp, và **xử lý riêng chữ đ/Đ** (NFD không bỏ được).
+- So khớp tìm kiếm trên chuỗi đã bỏ dấu, viết thường, gồm cả tên, mã và `aliases`.
+- Live search có debounce khoảng 200ms.
+- Hỗ trợ bàn phím: ↑ ↓ để chọn, Enter để mở, Esc để đóng.
+
+## Giao diện
+- Tailwind CDN, style viết thẳng vào class. `style.css` chỉ chứa skeleton, animation và phần Tailwind không làm gọn được.
+- Màu chủ đạo xanh dương, card bo góc mềm, phong cách phẳng.
+- **Mobile-first**, test ở chiều rộng khoảng 375px trước.
+- Dark mode: dùng class `dark` của Tailwind trên thẻ gốc, mọi thành phần đều phải có kiểu tối.
+- Skeleton loading trong lúc chờ Mock API.
+- Mọi màn hình đều xử lý đủ 4 trạng thái: **đang tải, có dữ liệu, rỗng, lỗi**.
+- Ảnh có `alt`, có ảnh mặc định khi tải lỗi (`onerror`).
+- Bảng rộng phải cuộn ngang được trên mobile.
+
+## An toàn
+- Khi đưa dữ liệu vào trang, **không tin dữ liệu là an toàn**. Dùng `textContent` hoặc hàm escape HTML khi chèn chuỗi, không dán thẳng chuỗi lạ vào `innerHTML`.
+- Đường dẫn ảnh và link website lấy từ dữ liệu phải kiểm tra hợp lệ trước khi dùng.
+
+## Khi Claude đưa code cho Quan
+1. Nói rõ **file nào, dán vào đâu**.
+2. Đưa code hoàn chỉnh của file hoặc hàm cần sửa, đủ để chạy.
+3. Giải thích ngắn từng khối để Quan bảo vệ được với thầy cô.
+4. Nói cách kiểm tra chạy đúng (mở Live Server, làm gì, thấy gì).
+5. Nếu có rủi ro hoặc hạn chế thì nói thẳng ngay đó.

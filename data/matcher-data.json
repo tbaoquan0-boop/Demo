@@ -1,0 +1,173 @@
+{
+  "source": "generated-from-majors",
+  "schoolCount": 3,
+  "rows": [
+    {
+      "schoolCode": "BKA",
+      "schoolName": "Đại học Bách khoa Hà Nội",
+      "city": "HN",
+      "majorCode": "IT1",
+      "majorName": "Khoa học máy tính",
+      "group": "CNTT",
+      "combo": "A00",
+      "scores": {
+        "2025": 27.5,
+        "2024": 27.0
+      },
+      "source": "mau-phat-trien"
+    },
+    {
+      "schoolCode": "BKA",
+      "schoolName": "Đại học Bách khoa Hà Nội",
+      "city": "HN",
+      "majorCode": "IT1",
+      "majorName": "Khoa học máy tính",
+      "group": "CNTT",
+      "combo": "A01",
+      "scores": {
+        "2025": 27.25,
+        "2024": 26.75
+      },
+      "source": "mau-phat-trien"
+    },
+    {
+      "schoolCode": "BKA",
+      "schoolName": "Đại học Bách khoa Hà Nội",
+      "city": "HN",
+      "majorCode": "IT2",
+      "majorName": "Kỹ thuật phần mềm",
+      "group": "CNTT",
+      "combo": "A00",
+      "scores": {
+        "2025": 26.5
+      },
+      "source": "mau-phat-trien"
+    },
+    {
+      "schoolCode": "BKA",
+      "schoolName": "Đại học Bách khoa Hà Nội",
+      "city": "HN",
+      "majorCode": "EE1",
+      "majorName": "Kỹ thuật điện",
+      "group": "Kỹ thuật",
+      "combo": "A00",
+      "scores": {
+        "2025": 26.0,
+        "2024": 24.5
+      },
+      "source": "mau-phat-trien"
+    },
+    {
+      "schoolCode": "BKA",
+      "schoolName": "Đại học Bách khoa Hà Nội",
+      "city": "HN",
+      "majorCode": "ME1",
+      "majorName": "Kỹ thuật cơ khí",
+      "group": "Kỹ thuật",
+      "combo": "A00",
+      "scores": {
+        "2025": 25.0,
+        "2024": 24.8
+      },
+      "source": "mau-phat-trien"
+    },
+    {
+      "schoolCode": "FPT",
+      "schoolName": "Đại học FPT",
+      "city": "HCM",
+      "majorCode": "SE",
+      "majorName": "Kỹ thuật phần mềm",
+      "group": "CNTT",
+      "combo": "A00",
+      "scores": {
+        "2025": 23.5,
+        "2024": 22.5
+      },
+      "source": "mau-phat-trien"
+    },
+    {
+      "schoolCode": "FPT",
+      "schoolName": "Đại học FPT",
+      "city": "HCM",
+      "majorCode": "SE",
+      "majorName": "Kỹ thuật phần mềm",
+      "group": "CNTT",
+      "combo": "A01",
+      "scores": {
+        "2025": 23.0,
+        "2024": 22.0
+      },
+      "source": "mau-phat-trien"
+    },
+    {
+      "schoolCode": "FPT",
+      "schoolName": "Đại học FPT",
+      "city": "HCM",
+      "majorCode": "BA",
+      "majorName": "Quản trị kinh doanh",
+      "group": "Kinh tế",
+      "combo": "A00",
+      "scores": {
+        "2025": 21.0,
+        "2024": 20.5
+      },
+      "source": "mau-phat-trien"
+    },
+    {
+      "schoolCode": "QSB",
+      "schoolName": "Trường Đại học Bách khoa - ĐHQG TP.HCM",
+      "city": "HCM",
+      "majorCode": "IT1",
+      "majorName": "Khoa học máy tính",
+      "group": "CNTT",
+      "combo": "A00",
+      "scores": {
+        "2025": 26.75,
+        "2024": 26.25
+      },
+      "source": "mau-phat-trien"
+    },
+    {
+      "schoolCode": "QSB",
+      "schoolName": "Trường Đại học Bách khoa - ĐHQG TP.HCM",
+      "city": "HCM",
+      "majorCode": "CE1",
+      "majorName": "Kỹ thuật máy tính",
+      "group": "CNTT",
+      "combo": "A00",
+      "scores": {
+        "2025": 26.0,
+        "2024": 25.5
+      },
+      "source": "mau-phat-trien"
+    },
+    {
+      "schoolCode": "QSB",
+      "schoolName": "Trường Đại học Bách khoa - ĐHQG TP.HCM",
+      "city": "HCM",
+      "majorCode": "CE1",
+      "majorName": "Kỹ thuật máy tính",
+      "group": "CNTT",
+      "combo": "A01",
+      "scores": {
+        "2025": 25.75,
+        "2024": 25.25
+      },
+      "source": "mau-phat-trien"
+    },
+    {
+      "schoolCode": "QSB",
+      "schoolName": "Trường Đại học Bách khoa - ĐHQG TP.HCM",
+      "city": "HCM",
+      "majorCode": "ME1",
+      "majorName": "Kỹ thuật cơ khí",
+      "group": "Kỹ thuật",
+      "combo": "A00",
+      "scores": {
+        "2025": 24.5,
+        "2024": 24.0
+      },
+      "source": "mau-phat-trien"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+---
+description: Cấu trúc dữ liệu JSON, quy tắc nhập điểm chuẩn và cách xử lý dữ liệu thiếu của UniReview VN. Đọc khi thiết kế, nhập, trích hoặc kiểm tra dữ liệu trường và điểm chuẩn.
+globs: "**/data/**/*.json"
+alwaysApply: false
+---
+
+# Dữ liệu
+
+## Nguyên tắc bất di bất dịch
+- **Dữ liệu phải có nguồn.** Mỗi file điểm chuẩn ghi rõ link nguồn (đề án tuyển sinh, thông báo điểm chuẩn của trường, cổng tuyển sinh Bộ GD&ĐT).
+- **Không sinh số.** AI chỉ giúp trích xuất và định dạng từ tài liệu Quan cung cấp. Quan đối chiếu lại với nguồn.
+- **Thiếu thì để thiếu**, không điền đại. Hiển thị "Chưa cập nhật".
+- Điểm chuẩn lưu **đúng như nguồn công bố**, không tự làm tròn hay quy đổi.
+
+## 3 loại dữ liệu
+
+### 1. `universities.json`: danh sách nhẹ, trang chủ chỉ tải file này
+Mỗi trường gồm:
+- `code`: mã trường, viết hoa (BKA, QHT...). Khóa chính, trùng tên file ảnh và file `majors/`.
+- `name`: tên đầy đủ.
+- `aliases`: mảng tên viết tắt và tên gọi thường dùng (NEU, BKHN...). Nhập tay từng trường.
+- `city`: `HN` hoặc `HCM`.
+- `type`: `public` hoặc `private`.
+- `website`, `address`, `founded`.
+- `cover`: đường dẫn ảnh bìa.
+- `hasMajorData`: đã có điểm chuẩn hay chưa.
+- `minScore`, `maxScore`: khoảng điểm chuẩn (chỉ khi có dữ liệu, tính từ năm gần nhất).
+- `majorGroups`: các nhóm ngành của trường (CNTT, Kinh tế, Y dược, Sư phạm, Kỹ thuật...).
+
+### 2. `majors/<CODE>.json`: điểm chuẩn từng trường
+- `code`, `source` (link nguồn), `updatedAt`.
+- `majors`: danh sách ngành, mỗi ngành gồm:
+  - `majorCode`, `name`, `group` (nhóm ngành).
+  - `combos`: các tổ hợp xét tuyển, mỗi tổ hợp có `combo` (A00, D01...) và `scores` theo năm (ví dụ 2 năm gần nhất).
+  - `scale`: `30` hoặc `40` hoặc khác.
+  - `method`: `thpt` hoặc phương thức khác.
+  - `note`: chú thích (chương trình chất lượng cao, cơ sở khác, có nhân đôi môn...).
+  - `tuition` và `tuitionYear`: học phí ước tính mỗi năm và năm áp dụng.
+
+### 3. `matcher-data.json`: dữ liệu gộp cho Matcher
+- **Không nhập tay.** Tạo bằng script gộp từ các file `majors/`.
+- Chỉ chứa ngành đạt cả hai điều kiện: `scale = 30` và `method = thpt`.
+- Mỗi dòng: mã trường, tên trường, thành phố, mã ngành, tên ngành, nhóm ngành, tổ hợp, điểm 2 năm.
+- Mỗi lần sửa `majors/` thì chạy lại script.
+
+## Ngành không đưa vào Matcher (vẫn hiện ở trang chi tiết, có đánh dấu)
+- Thang 40 (ngoại ngữ nhân đôi, ngành năng khiếu).
+- Xét học bạ, đánh giá năng lực, IELTS quy đổi.
+- Chương trình chất lượng cao, liên kết, cơ sở khác có điểm riêng.
+
+## Ảnh
+- 1 ảnh cổng trường mỗi trường, `assets/campus/<CODE>.jpg`, dưới ~200KB.
+- Thiếu ảnh thì dùng `assets/default-campus.jpg`.
+- Ghi nguồn ảnh vào README.
+- Chỉ dùng ảnh có quyền sử dụng hoặc ảnh tự chụp, tránh lấy ảnh có bản quyền.
+
+## Thu thập theo tầng
+- **Tầng 1 (bắt buộc):** toàn bộ trường HN + HCM với thông tin cơ bản và ảnh.
+- **Tầng 2 (nhập dần):** điểm chuẩn 2 năm, khóa mốc đầu 20–30 trường lớn rồi mới mở rộng.
+
+## Kiểm tra trước khi nhận một file dữ liệu
+- Mã trường khớp với `universities.json`.
+- Mọi ngành có tổ hợp, điểm, năm.
+- Điểm nằm trong thang hợp lệ (không âm, không vượt thang).
+- Có link nguồn.
+- Ngành thang 40 hoặc phương thức khác đã được đánh dấu.

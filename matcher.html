@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gợi ý nguyện vọng — UniReview VN</title>
+  <script>
+    document.documentElement.classList.toggle("dark", (localStorage.getItem("unireview-theme") || "dark") === "dark");
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: "class" };</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+  <div id="site-header"></div>
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold">Công cụ gợi ý nguyện vọng</h1>
+    <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">So điểm của bạn với điểm chuẩn 2 năm gần nhất. Không dự đoán, không % cơ hội đỗ.</p>
+    <form id="matcher-form" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end">
+      <label class="text-sm">Tổ hợp
+        <select id="combo-input" class="mt-1 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2"></select>
+      </label>
+      <label class="text-sm">Tổng điểm (thang 30)
+        <input id="score-input" type="text" inputmode="decimal" placeholder="0 – 30" class="mt-1 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2">
+      </label>
+      <label class="text-sm">Thành phố
+        <select id="city-input" class="mt-1 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2">
+          <option value="both">Hà Nội và TP.HCM</option>
+          <option value="HN">Hà Nội</option>
+          <option value="HCM">TP.HCM</option>
+        </select>
+      </label>
+      <label class="text-sm">Nhóm ngành
+        <select id="group-input" class="mt-1 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2"></select>
+      </label>
+      <button type="submit" class="rounded-xl bg-blue-600 text-white px-4 py-2.5 font-medium hover:bg-blue-700">Phân tích</button>
+    </form>
+    <p id="form-error" class="hidden mt-2 text-sm text-rose-600"></p>
+    <div id="selftest" class="hidden mt-4 text-sm"></div>
+    <div id="results" class="mt-6 space-y-4"></div>
+  </main>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/matcher.js"></script>
+</body>
+</html>

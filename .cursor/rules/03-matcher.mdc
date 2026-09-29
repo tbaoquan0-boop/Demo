@@ -1,0 +1,55 @@
+---
+description: Đặc tả đầy đủ logic công cụ gợi ý nguyện vọng (Matcher) của UniReview VN, dựa trên điểm chuẩn 2 năm. Đọc khi viết, sửa, test hoặc giải thích Matcher.
+globs: "**/matcher.html,**/matcher.js,**/matcher-data.json"
+alwaysApply: false
+---
+
+# Matcher: gợi ý nguyện vọng
+
+## Nguyên tắc
+Không dùng ngưỡng tự đặt kiểu "+1.0 là an toàn". Chỉ so điểm người dùng với **điểm chuẩn thật của 2 năm gần nhất**. Không dự đoán, không "% cơ hội đỗ".
+
+## Input
+1. Tổ hợp môn (A00, A01, B00, C00, D01...).
+2. Tổng điểm 3 môn, thang 30, **chưa cộng điểm ưu tiên**. Kiểm tra hợp lệ: số từ 0 đến 30.
+3. Thành phố: Hà Nội, TP.HCM hoặc cả hai.
+4. Nhóm ngành (tùy chọn).
+
+## Dữ liệu đầu vào của thuật toán
+Chỉ lấy từ `matcher-data.json` (đã lọc thang 30, xét điểm thi THPT). Chỉ xét ngành **có xét tổ hợp người dùng nhập** và thuộc thành phố đã chọn.
+
+## Phân loại
+Với mỗi ngành phù hợp, gọi A là điểm chuẩn năm gần nhất, B là năm liền trước, `điểm` là điểm người dùng:
+
+| Nhóm | Điều kiện |
+|---|---|
+| **Đạt cả 2 năm** | điểm ≥ max(A, B) |
+| **Đạt 1 trong 2 năm** | min(A, B) ≤ điểm < max(A, B) |
+| **Chưa đạt cả 2 năm** | điểm < min(A, B), chỉ hiện khi mức thiếu so với năm gần nhất không vượt `MAX_GAP` |
+| **Chỉ có 1 năm dữ liệu** | Ngành chỉ có điểm một năm. Xếp riêng, ghi rõ "chỉ có 1 năm", vẫn hiện điểm và chênh lệch |
+
+Các nhóm nối liền nhau, không trùng, không hở.
+
+**Về `MAX_GAP`:** đây chỉ là giới hạn hiển thị để danh sách không quá dài, không phải dự đoán. Đặt thành **một hằng số duy nhất** ở đầu `matcher.js`, mặc định 1.5 điểm, có chú thích rõ. Khi báo cáo nói thẳng đây là giới hạn hiển thị.
+
+## Cách hiển thị mỗi kết quả
+- Tên trường, tên ngành, mã ngành, tổ hợp.
+- Điểm chuẩn **cả 2 năm, ghi rõ năm**.
+- Chênh lệch giữa điểm người dùng và năm gần nhất (ví dụ +0.75 hoặc −0.50).
+- Trong mỗi nhóm, sắp xếp theo chênh lệch so với năm gần nhất, gần điểm chuẩn nhất lên trước.
+
+## Thông báo bắt buộc trên trang kết quả
+- "Chỉ gợi ý trong các trường đã có dữ liệu" (kèm số trường đang có).
+- "Điểm chuẩn các năm trước chỉ để tham khảo, không phải dự đoán."
+- "Chỉ áp dụng cho xét điểm thi tốt nghiệp THPT, thang 30."
+- Nếu có ngành dữ liệu thiếu hoặc không phù hợp thì không hiện, không đoán.
+
+## Trường hợp biên phải xử lý
+- Không có ngành nào phù hợp: hiện thông báo rỗng, gợi ý đổi tổ hợp, thành phố hoặc nhóm ngành.
+- Điểm nhập ngoài 0–30 hoặc để trống: báo lỗi ngay tại form.
+- Tổ hợp chưa có trong dữ liệu: báo "chưa có dữ liệu cho tổ hợp này".
+- Dữ liệu tải lỗi: thông báo kèm nút "Thử lại".
+- Kết quả rất nhiều: phân trang hoặc "Xem thêm" theo từng nhóm.
+
+## Bộ test tối thiểu
+Test bằng dữ liệu giả có sẵn đáp án, gồm: điểm đúng bằng điểm chuẩn, điểm nằm giữa hai năm, điểm thấp hơn cả hai năm trong và ngoài `MAX_GAP`, ngành chỉ có 1 năm, ngành hai tổ hợp khác điểm, điểm biên 0 và 30.

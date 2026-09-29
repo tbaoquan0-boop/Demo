@@ -1,0 +1,47 @@
+{
+  "code": "FPT",
+  "source": "mau-phat-trien",
+  "updatedAt": "2026-09-29",
+  "majors": [
+    {
+      "majorCode": "SE",
+      "name": "Kỹ thuật phần mềm",
+      "group": "CNTT",
+      "scale": 30,
+      "method": "thpt",
+      "note": "",
+      "tuition": null,
+      "tuitionYear": null,
+      "combos": [
+        { "combo": "A00", "scores": { "2025": 23.5, "2024": 22.5 } },
+        { "combo": "A01", "scores": { "2025": 23.0, "2024": 22.0 } }
+      ]
+    },
+    {
+      "majorCode": "BA",
+      "name": "Quản trị kinh doanh",
+      "group": "Kinh tế",
+      "scale": 30,
+      "method": "thpt",
+      "note": "",
+      "tuition": null,
+      "tuitionYear": null,
+      "combos": [
+        { "combo": "A00", "scores": { "2025": 21.0, "2024": 20.5 } }
+      ]
+    },
+    {
+      "majorCode": "SE-HB",
+      "name": "Kỹ thuật phần mềm (học bạ)",
+      "group": "CNTT",
+      "scale": 30,
+      "method": "hocba",
+      "note": "Xét học bạ — không đưa vào Matcher",
+      "tuition": null,
+      "tuitionYear": null,
+      "combos": [
+        { "combo": "A00", "scores": { "2025": 24.0, "2024": 23.5 } }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UniReview VN</title>
+  <script>
+    document.documentElement.classList.toggle("dark", (localStorage.getItem("unireview-theme") || "dark") === "dark");
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: "class" };</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+  <div id="site-header"></div>
+  <section class="relative">
+    <img src="assets/default-campus.svg" alt="" class="w-full h-64 sm:h-80 object-cover">
+    <div class="hero-overlay absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+      <h1 class="text-2xl sm:text-4xl font-bold text-white">Tìm trường đại học Hà Nội và TP.HCM</h1>
+      <p class="mt-2 text-slate-200 text-sm sm:text-base">Tra cứu điểm chuẩn · Gợi ý nguyện vọng theo 2 năm gần nhất</p>
+      <div id="search-wrap" class="relative w-full max-w-xl mt-6">
+        <input id="search-input" type="search" autocomplete="off" placeholder="Nhập tên trường, mã, viết tắt..."
+          class="w-full rounded-2xl px-4 py-3 text-slate-900 shadow-lg">
+        <ul id="search-list" class="hidden absolute left-0 right-0 mt-2 rounded-xl bg-white dark:bg-slate-900 shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden text-left z-20"></ul>
+      </div>
+    </div>
+  </section>
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <div class="grid sm:grid-cols-3 gap-3 mb-6">
+      <select id="filter-city" class="rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm">
+        <option value="">Tất cả thành phố</option>
+        <option value="HN">Hà Nội</option>
+        <option value="HCM">TP.HCM</option>
+      </select>
+      <select id="filter-type" class="rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm">
+        <option value="">Tất cả loại hình</option>
+        <option value="public">Công lập</option>
+        <option value="private">Tư thục</option>
+      </select>
+      <select id="filter-group" class="rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm">
+        <option value="">Tất cả nhóm ngành</option>
+      </select>
+    </div>
+    <div id="list-status" class="mb-4"></div>
+    <div id="school-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </main>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

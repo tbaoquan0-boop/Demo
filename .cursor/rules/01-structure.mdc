@@ -1,0 +1,63 @@
+---
+description: Cấu trúc thư mục chuẩn, vai trò từng file và thứ tự nhúng script của UniReview VN. Đọc khi tạo file mới, thêm trang hoặc hỏi "cái này để ở đâu".
+globs: "**/*.{html,js,css}"
+alwaysApply: false
+---
+
+# Cấu trúc project
+
+```
+unireview/
+├── index.html            trang chủ
+├── matcher.html          công cụ gợi ý nguyện vọng
+├── school.html           trang chi tiết, dùng chung cho mọi trường (?code=BKA)
+├── README.md             nguồn dữ liệu, nguồn ảnh, cách chạy
+├── css/
+│   └── style.css         skeleton loading, animation, chỉnh riêng ngoài Tailwind
+├── js/
+│   ├── api.js            Mock API
+│   ├── utils.js          hàm dùng chung
+│   ├── components.js     hàm vẽ giao diện
+│   ├── theme.js          Light/Dark mode
+│   ├── home.js           logic trang chủ
+│   ├── search.js         live search
+│   ├── matcher.js        logic Matcher
+│   └── school.js         logic trang chi tiết
+├── data/
+│   ├── universities.json     danh sách nhẹ toàn bộ trường
+│   ├── matcher-data.json     dữ liệu gộp cho Matcher (tạo từ majors/)
+│   └── majors/               mỗi trường một file, tên theo mã trường
+│       ├── BKA.json
+│       └── ...
+└── assets/
+    ├── campus/           1 ảnh cổng trường mỗi trường, tên theo mã trường
+    ├── default-campus.jpg
+    └── logo.svg
+```
+
+## Vai trò từng file JS
+| File | Chỉ làm việc này |
+|---|---|
+| `api.js` | Gọi dữ liệu qua Promise có độ trễ, cache, báo lỗi. Không đụng giao diện. |
+| `utils.js` | Bỏ dấu tiếng Việt, định dạng số/tiền, đọc tham số URL, debounce. |
+| `components.js` | Các hàm **chỉ vẽ**: card trường, dòng bảng, gợi ý tìm kiếm, skeleton, thông báo rỗng/lỗi. Nhận dữ liệu, trả về HTML. Không lấy dữ liệu, không lọc. |
+| `theme.js` | Bật/tắt dark mode, nhớ lựa chọn. |
+| `home.js` | Nạp danh sách, áp bộ lọc, phân trang. |
+| `search.js` | Live search: so khớp, viết tắt, điều khiển bằng phím. |
+| `matcher.js` | Nhận input, phân loại ngành, sắp xếp. Không tự vẽ, gọi `components.js`. |
+| `school.js` | Nạp điểm chuẩn một trường, lọc/sắp xếp bảng. |
+
+## Nhúng script theo từng trang
+| Trang | JS (theo đúng thứ tự) |
+|---|---|
+| `index.html` | utils, api, components, theme, search, home |
+| `matcher.html` | utils, api, components, theme, matcher |
+| `school.html` | utils, api, components, theme, school |
+
+Tất cả nhúng `css/style.css` và Tailwind CDN. Nhúng `utils.js` và `api.js` **trước**, `components.js` sau, file logic của trang **cuối cùng**.
+
+## Quy tắc
+- Chỉ có **một** `school.html`. Không tạo mỗi trường một file HTML.
+- Không tạo file/thư mục ngoài cấu trúc này khi chưa hỏi Quan.
+- Ảnh đặt tên trùng `code` trong `universities.json`.
+- Phải chạy qua Live Server hoặc GitHub Pages, mở file trực tiếp thì `fetch` JSON bị chặn.

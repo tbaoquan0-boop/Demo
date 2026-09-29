@@ -1,0 +1,47 @@
+{
+  "code": "QSB",
+  "source": "mau-phat-trien",
+  "updatedAt": "2026-09-29",
+  "majors": [
+    {
+      "majorCode": "IT1",
+      "name": "Khoa học máy tính",
+      "group": "CNTT",
+      "scale": 30,
+      "method": "thpt",
+      "note": "",
+      "tuition": null,
+      "tuitionYear": null,
+      "combos": [
+        { "combo": "A00", "scores": { "2025": 26.75, "2024": 26.25 } }
+      ]
+    },
+    {
+      "majorCode": "CE1",
+      "name": "Kỹ thuật máy tính",
+      "group": "CNTT",
+      "scale": 30,
+      "method": "thpt",
+      "note": "",
+      "tuition": null,
+      "tuitionYear": null,
+      "combos": [
+        { "combo": "A00", "scores": { "2025": 26.0, "2024": 25.5 } },
+        { "combo": "A01", "scores": { "2025": 25.75, "2024": 25.25 } }
+      ]
+    },
+    {
+      "majorCode": "ME1",
+      "name": "Kỹ thuật cơ khí",
+      "group": "Kỹ thuật",
+      "scale": 30,
+      "method": "thpt",
+      "note": "",
+      "tuition": null,
+      "tuitionYear": null,
+      "combos": [
+        { "combo": "A00", "scores": { "2025": 24.5, "2024": 24.0 } }
+      ]
+    }
+  ]
+}
